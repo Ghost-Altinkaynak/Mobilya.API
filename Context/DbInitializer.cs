@@ -13,11 +13,14 @@ namespace Moilya.API.Context
             {
                 context.AnaSayfaMansetleri.Add(new AnaSayfaManset
                 {
-                    SiteAdi = "Moilya",
+                    SiteAdi = "Cihan Mobilya",
                     UstBaslik = "Özel Ölçü Mobilya Atölyesi",
                     AnaBaslik = "Duvarınızın ölçüsü kadar ",
                     VurguluBaslik = "dolap.",
-                    AciklamaMetni = "Moilya; gardırobunuzdan mutfak dolabınıza kadar evinizin her köşesini milimetrik ölçüyle tasarlar, kendi atölyesinde üretir, kapınızda monte eder."
+                    AciklamaMetni = "Cihan Mobilya; gardırobunuzdan mutfak dolabınıza kadar evinizin her köşesini milimetrik ölçüyle tasarlar, kendi atölyesinde üretir, kapınızda monte eder.",
+                    SurecBasligi = "Ölçüden montaja adım adım",
+                    SurecAciklamasi = "İlk ölçü alımından evinizde kusursuz kurulum yapılana kadar süreci titizlikle yürütüyoruz.",
+                    NedenBizBasligi = "Fabrika ölçüsü değil, sizin ölçünüz"
                 });
             }
 
@@ -26,8 +29,8 @@ namespace Moilya.API.Context
                 context.GuvenMaddeleri.AddRange(
                     new GuvenMaddesi { Metin = "Yerinde ücretsiz ölçü", SiraNo = 1 },
                     new GuvenMaddesi { Metin = "Birinci sınıf malzeme", SiraNo = 2 },
-                    new GuvenMaddesi { Metin = "5 yıl garanti", SiraNo = 3 },
-                    new GuvenMaddesi { Metin = "Anahtar teslim montaj", SiraNo = 4 }
+                    new GuvenMaddesi { Metin = "Kişiye özel projelendirme", SiraNo = 3 },
+                    new GuvenMaddesi { Metin = "Özenli montaj", SiraNo = 4 }
                 );
             }
 
@@ -51,7 +54,7 @@ namespace Moilya.API.Context
                     new SurecAdimi { Baslik = "Keşif & Ölçü", Aciklama = "Evinize gelir, alanı milimetrik olarak ölçer, ihtiyaçlarınızı dinleriz.", SiraNo = 1 },
                     new SurecAdimi { Baslik = "Tasarım", Aciklama = "Ölçülere göre tasarımı hazırlar, sizinle birlikte netleştiririz.", SiraNo = 2 },
                     new SurecAdimi { Baslik = "Üretim", Aciklama = "Atölyemizde seçtiğiniz malzeme ve renkle üretime başlarız.", SiraNo = 3 },
-                    new SurecAdimi { Baslik = "Montaj & Teslim", Aciklama = "Evinizde özenle monte eder, temizleyip anahtarı size teslim ederiz.", SiraNo = 4 }
+                    new SurecAdimi { Baslik = "Montaj & Teslim", Aciklama = "Evinizde özenle monte eder, temizleyip kullanıma hazır şekilde teslim ederiz.", SiraNo = 4 }
                 );
             }
 
@@ -59,9 +62,9 @@ namespace Moilya.API.Context
             {
                 context.NedenBizMaddeleri.AddRange(
                     new NedenBizMaddesi { Baslik = "Milimetrik özel ölçü", Aciklama = "Standart ebat değil, duvarınızın tam ölçüsüne göre üretim.", SiraNo = 1 },
-                    new NedenBizMaddesi { Baslik = "Nem ve çarpılmaya dayanıklı malzeme", Aciklama = "Birinci sınıf laminat ve masif seçenekleriyle uzun ömür.", SiraNo = 2 },
+                    new NedenBizMaddesi { Baslik = "Dayanıklı malzeme", Aciklama = "Birinci sınıf laminat ve kaliteli bağlantı elemanları ile uzun ömür.", SiraNo = 2 },
                     new NedenBizMaddesi { Baslik = "Şeffaf fiyatlandırma", Aciklama = "Keşif sonrası net teklif, sürpriz maliyet yok.", SiraNo = 3 },
-                    new NedenBizMaddesi { Baslik = "5 yıl garanti", Aciklama = "Montaj sonrası ücretsiz kontrol ve destek.", SiraNo = 4 }
+                    new NedenBizMaddesi { Baslik = "Temiz işçilik", Aciklama = "Montaj sonrası evinizi tertemiz bırakarak teslimat.", SiraNo = 4 }
                 );
             }
 
@@ -71,16 +74,16 @@ namespace Moilya.API.Context
                     new Istatistik { Deger = "500+", Etiket = "tamamlanan özel ölçü proje", SiraNo = 1 },
                     new Istatistik { Deger = "10 yıl", Etiket = "atölye tecrübesi", SiraNo = 2 },
                     new Istatistik { Deger = "48 saat", Etiket = "içinde keşif planlama", SiraNo = 3 },
-                    new Istatistik { Deger = "5 yıl", Etiket = "garanti süresi", SiraNo = 4 }
+                    new Istatistik { Deger = "%100", Etiket = "müşteri memnuniyeti", SiraNo = 4 }
                 );
             }
 
             if (!await context.GaleriOgeleri.AnyAsync() && hizmetler.Count > 0)
             {
                 context.GaleriOgeleri.AddRange(
-                    new GaleriOgesi { Baslik = "Sürgülü Gardırop — Ataşehir", Renk1 = "#C9A27A", Renk2 = "#8B6142", SiraNo = 1, HizmetId = hizmetler[0].Id },
-                    new GaleriOgesi { Baslik = "Mutfak Dolabı — Kadıköy", Renk1 = "#D8C6A6", Renk2 = "#71805A", SiraNo = 2, HizmetId = hizmetler[1].Id },
-                    new GaleriOgesi { Baslik = "Vestiyer & Kiler — Beylikdüzü", Renk1 = "#B8703E", Renk2 = "#3B2A1F", SiraNo = 3, HizmetId = hizmetler[3].Id }
+                    new GaleriOgesi { Baslik = "Sürgülü Gardırop — İstanbul", Renk1 = "#C9A27A", Renk2 = "#8B6142", SiraNo = 1, HizmetId = hizmetler[0].Id },
+                    new GaleriOgesi { Baslik = "Mutfak Dolabı — İstanbul", Renk1 = "#D8C6A6", Renk2 = "#71805A", SiraNo = 2, HizmetId = hizmetler[1].Id },
+                    new GaleriOgesi { Baslik = "Vestiyer & Kiler — İstanbul", Renk1 = "#B8703E", Renk2 = "#3B2A1F", SiraNo = 3, HizmetId = hizmetler[3].Id }
                 );
             }
 
@@ -89,10 +92,10 @@ namespace Moilya.API.Context
                 context.IletisimBilgileri.Add(new IletisimBilgisi
                 {
                     Telefon = "0500 000 00 00",
-                    Eposta = "merhaba@moilya.com",
-                    Instagram = "@moilya",
-                    Adres = "İstanbul, Türkiye",
-                    HaritaAramasi = "Kadıköy, İstanbul"
+                    Eposta = "merhaba@cihanmobilya.com",
+                    Instagram = "@cihanmobilya",
+                    Adres = "Arnavutköy / İstanbul",
+                    HaritaAramasi = "Arnavutköy, İstanbul"
                 });
             }
 
@@ -110,7 +113,7 @@ namespace Moilya.API.Context
                 context.Yoneticiler.Add(new Yonetici
                 {
                     KullaniciAdi = "admin",
-                    SifreHash = BCrypt.Net.BCrypt.HashPassword("moilya2026")
+                    SifreHash = BCrypt.Net.BCrypt.HashPassword("cihan2026")
                 });
             }
 

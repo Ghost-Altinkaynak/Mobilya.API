@@ -58,13 +58,33 @@ function renderHero(manset) {
     document.getElementById('hero-title-em').textContent = manset.vurguluBaslik;
     document.getElementById('hero-lead').textContent = manset.aciklamaMetni;
     renderSiteName(manset.siteAdi);
+
+    const siteAdi = (manset.siteAdi && manset.siteAdi.trim()) ? manset.siteAdi.trim() : 'Cihan Mobilya';
+
+    const surecBaslikEl = document.getElementById('surec-baslik');
+    if (surecBaslikEl) surecBaslikEl.textContent = manset.surecBasligi || 'Ölçüden montaja adım adım';
+
+    const surecAciklamaEl = document.getElementById('surec-aciklama');
+    if (surecAciklamaEl) surecAciklamaEl.textContent = manset.surecAciklamasi || 'İlk ölçü alımından evinizde kusursuz kurulum yapılana kadar süreci titizlikle yürütüyoruz.';
+
+    const nedenBizEyebrowEl = document.getElementById('neden-biz-eyebrow');
+    if (nedenBizEyebrowEl) nedenBizEyebrowEl.textContent = `Neden ${siteAdi}`;
+
+    const nedenBizBaslikEl = document.getElementById('neden-biz-baslik');
+    if (nedenBizBaslikEl) nedenBizBaslikEl.textContent = manset.nedenBizBasligi || 'Fabrika ölçüsü değil, sizin ölçünüz';
 }
 
 function renderSiteName(siteAdi) {
-    const isim = (siteAdi && siteAdi.trim()) ? siteAdi.trim() : 'Moilya';
-    const anaKisim = isim.slice(0, -1);
-    const sonHarf = isim.slice(-1);
-    const html = `${escapeHtml(anaKisim)}<span>${escapeHtml(sonHarf)}</span>`;
+    const isim = (siteAdi && siteAdi.trim()) ? siteAdi.trim() : 'Cihan Mobilya';
+    let html;
+    if (isim.includes(' ')) {
+        const parts = isim.split(' ');
+        html = `${escapeHtml(parts[0])} <span>${escapeHtml(parts.slice(1).join(' '))}</span>`;
+    } else {
+        const anaKisim = isim.slice(0, -1);
+        const sonHarf = isim.slice(-1);
+        html = `${escapeHtml(anaKisim)}<span>${escapeHtml(sonHarf)}</span>`;
+    }
 
     const headerLogo = document.getElementById('site-logo-header');
     const footerLogo = document.getElementById('site-logo-footer');
@@ -84,7 +104,7 @@ function renderServices(list) {
     document.getElementById('services-list').innerHTML = (list || []).map((s, i) => `
         <div class="service-card reveal" data-hizmet-id="${s.id}" role="button" tabindex="0"
              onclick="hizmeteGoreGaleriyeGit(this.dataset.hizmetId)"
-             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); hizmeteGoreGaleriyeGit(this.dataset.hizmetId);}">
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); hizmeteGoreGaleriyeGit(this.dataset.hizmetId)}">
           <div class="icon">${SERVICE_ICONS[i % SERVICE_ICONS.length]}</div>
           <h3>${escapeHtml(s.baslik)}</h3><p>${escapeHtml(s.aciklama)}</p>
           <span class="service-link-hint">Örnekleri Gör →</span>
@@ -224,13 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         try {
             await api.post('/api/Talepler', veri);
-            const waNumara = whatsappNumarasiTemizle(iletisimBilgisi ? iletisimBilgisi.whatsAppNumarasi : '');
-            let waLink = null;
-            if (waNumara) {
-                const waMetin = `Merhaba, Moilya web sitesinden yeni bir keşif talebi:\n\nAd Soyad: ${veri.adSoyad}\nTelefon: ${veri.telefon}\nBölge: ${veri.bolge}\nMesaj: ${veri.mesaj || '-'}`;
-                waLink = `https://wa.me/${waNumara}?text=${encodeURIComponent(waMetin)}`;
-            }
-            showLeadSuccessModal(waLink);
+            showLeadSuccessModal();
             form.reset();
         } catch (err) {
             showToast(err.message || 'Bir sorun oluştu, lütfen bizi doğrudan arayın.');

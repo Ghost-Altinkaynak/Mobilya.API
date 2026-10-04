@@ -32,7 +32,7 @@ const PANEL_META = {
     hero: { title: 'Ana Başlık', desc: 'Sayfanın en üstünde görünen giriş bölümü.' },
     services: { title: 'Hizmetler', desc: 'Ana sayfada listelenen hizmet kartları.' },
     process: { title: 'Süreç Adımları', desc: 'Sırayla numaralandırılan çalışma adımları.' },
-    why: { title: 'Neden Moilya', desc: 'Güven veren maddeler listesi.' },
+    why: { title: 'Neden Cihan Mobilya', desc: 'Güven veren maddeler listesi.' },
     stats: { title: 'İstatistikler', desc: 'Sayısal başarı göstergeleri.' },
     gallery: { title: 'Galeri', desc: 'Örnek çalışma kartları.' },
     contact: { title: 'İletişim Bilgileri', desc: 'Telefon, e-posta ve adres bilgileri.' },
@@ -170,12 +170,22 @@ async function loadHero() {
 
     document.getElementById('admin-content').innerHTML = `
         <div class="admin-panel">
-          <div class="admin-field"><label>Site Adı (logo)</label><input type="text" id="hero-siteAdi" value="${escapeHtml(m.siteAdi || 'Moilya')}"></div>
+          <div class="admin-field"><label>Site Adı (logo)</label><input type="text" id="hero-siteAdi" value="${escapeHtml(m.siteAdi || 'Cihan Mobilya')}"></div>
           <div class="admin-field"><label>Üst etiket</label><input type="text" id="hero-ustBaslik" value="${escapeHtml(m.ustBaslik || '')}"></div>
           <div class="admin-field"><label>Başlık (düz kısım)</label><input type="text" id="hero-anaBaslik" value="${escapeHtml(m.anaBaslik || '')}"></div>
           <div class="admin-field"><label>Başlık (vurgulu kısım)</label><input type="text" id="hero-vurguluBaslik" value="${escapeHtml(m.vurguluBaslik || '')}"></div>
           <div class="admin-field" style="margin-bottom:0;"><label>Alt açıklama</label><textarea id="hero-aciklamaMetni">${escapeHtml(m.aciklamaMetni || '')}</textarea></div>
           <button type="button" class="btn btn-primary" style="width:100%;margin-top:16px;" onclick="kaydetManset()">Manşeti Kaydet</button>
+        </div>
+        <div class="admin-panel">
+          <div class="admin-sub" style="margin-top:0;">Süreç Bölümü Başlığı</div>
+          <div class="admin-field"><label>Başlık</label><input type="text" id="hero-surecBasligi" value="${escapeHtml(m.surecBasligi || '')}"></div>
+          <div class="admin-field" style="margin-bottom:0;"><label>Alt açıklama</label><input type="text" id="hero-surecAciklamasi" value="${escapeHtml(m.surecAciklamasi || '')}"></div>
+        </div>
+        <div class="admin-panel">
+          <div class="admin-sub" style="margin-top:0;">"Neden Biz" Bölümü Başlığı</div>
+          <div class="admin-sub" style="margin:-4px 0 12px; font-size:11.5px;">Üst etiket otomatik "Neden ${escapeHtml(m.siteAdi || 'Cihan Mobilya')}" olarak gösterilir (Site Adı'na göre).</div>
+          <div class="admin-field" style="margin-bottom:0;"><label>Başlık</label><input type="text" id="hero-nedenBizBasligi" value="${escapeHtml(m.nedenBizBasligi || '')}"></div>
         </div>
         <div class="admin-sub" style="margin:-6px 0 10px;">Güven Şeridi — hero altında görünen kısa maddeler.</div>
         ${renderListPanel('/api/GuvenMaddeleri', guvenMaddeleri)}
@@ -188,7 +198,10 @@ async function kaydetManset() {
         ustBaslik: document.getElementById('hero-ustBaslik').value,
         anaBaslik: document.getElementById('hero-anaBaslik').value,
         vurguluBaslik: document.getElementById('hero-vurguluBaslik').value,
-        aciklamaMetni: document.getElementById('hero-aciklamaMetni').value
+        aciklamaMetni: document.getElementById('hero-aciklamaMetni').value,
+        surecBasligi: document.getElementById('hero-surecBasligi').value,
+        surecAciklamasi: document.getElementById('hero-surecAciklamasi').value,
+        nedenBizBasligi: document.getElementById('hero-nedenBizBasligi').value
     };
     try {
         await api.put('/api/AnaSayfa/manset', payload);
@@ -242,6 +255,8 @@ async function kaydetIletisim() {
 
 // ---------- Galeri ----------
 
+let adminGaleriFiltre = 'all';
+
 async function loadGallery() {
     const [galeri, hizmetler] = await Promise.all([
         api.get('/api/Galeri'),
@@ -249,7 +264,20 @@ async function loadGallery() {
     ]);
     galeriResimYollari = {};
 
-    const rows = galeri.map(g => {
+    const secenekler = ['all', ...hizmetler.map(h => String(h.id))];
+    const filtersHtml = secenekler.map(val => {
+        const label = val === 'all' ? 'Tümü' : ((hizmetler.find(h => String(h.id) === val) || {}).baslik || '');
+        const active = String(adminGaleriFiltre) === val ? 'active' : '';
+        return `<button type="button" class="filter-chip ${active}" data-val="${val}" onclick="setAdminGalleryFilter(this.dataset.val)">${escapeHtml(label)}</button>`;
+    }).join('');
+
+    const filtrelenmisGaleri = adminGaleriFiltre === 'all'
+        ? galeri
+        : galeri.filter(g => String(g.hizmetId) === String(adminGaleriFiltre));
+
+    const gosterimSirasi = [...filtrelenmisGaleri].reverse();
+
+    const rows = gosterimSirasi.map(g => {
         const thumbStyle = g.resimYolu
             ? `background-image:url('${escapeHtml(g.resimYolu)}')`
             : `background:linear-gradient(160deg, ${escapeHtml(g.renk1)}, ${escapeHtml(g.renk2)})`;
@@ -284,12 +312,18 @@ async function loadGallery() {
     }).join('');
 
     document.getElementById('admin-content').innerHTML = `
+        <div class="gallery-filters">${filtersHtml}</div>
         <div class="admin-panel">
           <div class="admin-sub" style="margin-top:0;">Fotoğraf yüklemek anlık kaydedilmez — yükledikten sonra o satırın "Kaydet" butonuna basmayı unutmayın.</div>
-          ${rows}
+          ${rows || '<div class="lead-empty">Bu kategoride henüz fotoğraf yok.</div>'}
           <button type="button" class="admin-add" onclick="ekleGaleriSatiri()">+ Ekle</button>
         </div>
     `;
+}
+
+function setAdminGalleryFilter(val) {
+    adminGaleriFiltre = val;
+    renderPanel();
 }
 
 async function fotografYukle(id, inputEl) {
@@ -356,7 +390,11 @@ async function silGaleriSatiri(id) {
 
 async function ekleGaleriSatiri() {
     try {
-        await api.post('/api/Galeri', { baslik: 'Yeni Çalışma', renk1: '#B8703E', renk2: '#3B2A1F', siraNo: 0, hizmetId: null });
+        const mevcutListe = await api.get('/api/Galeri');
+        const enYuksekSira = mevcutListe.length ? Math.max(...mevcutListe.map(g => g.siraNo || 0)) : 0;
+        const yeniSira = enYuksekSira + 1;
+        const varsayilanHizmetId = (adminGaleriFiltre && adminGaleriFiltre !== 'all') ? parseInt(adminGaleriFiltre, 10) : null;
+        await api.post('/api/Galeri', { baslik: 'Yeni Çalışma', renk1: '#B8703E', renk2: '#3B2A1F', siraNo: yeniSira, hizmetId: varsayilanHizmetId });
         showToast('Yeni galeri öğesi eklendi');
         await renderPanel();
     } catch (e) {
@@ -486,7 +524,7 @@ function gitSekmeye(tab) {
 
 function renderSidebar() {
     document.getElementById('admin-sidebar').innerHTML = `
-        <div class="brand-row"><a href="#top" class="logo">moil<span>y</span>a</a></div>
+        <div class="brand-row"><a href="#top" class="logo">Cihan <span>Mobilya</span></a></div>
         <small style="padding:0 12px 14px; display:block; margin-top:-16px;">Yönetim Paneli</small>
         <nav class="admin-nav">
           ${NAV_ITEMS.map(n => `
@@ -516,7 +554,7 @@ function renderLoginScreen() {
         <div>
           <div class="admin-login">
             <div class="lock-badge">${ICON.lock}</div>
-            <div class="brand">moilya</div>
+            <div class="brand">Cihan Mobilya</div>
             <h2>Yönetim Girişi</h2>
             <p>Devam etmek için kullanıcı adı ve şifreni gir.</p>
             <input type="text" id="login-kullanici" placeholder="Kullanıcı adı" value="admin" style="margin-bottom:10px;">

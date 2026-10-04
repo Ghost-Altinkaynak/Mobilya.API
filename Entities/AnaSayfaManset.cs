@@ -8,6 +8,9 @@
         public string AnaBaslik { get; set; } = string.Empty;
         public string VurguluBaslik { get; set; } = string.Empty;
         public string AciklamaMetni { get; set; } = string.Empty;
+        public string? SurecBasligi { get; set; }
+        public string? SurecAciklamasi { get; set; }
+        public string? NedenBizBasligi { get; set; }
         public DateTime GuncellenmeTarihi { get; set; } = DateTime.UtcNow;
     }
 }

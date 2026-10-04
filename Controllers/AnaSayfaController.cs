@@ -53,6 +53,9 @@ namespace Moilya.API.Controllers
                 manset.AnaBaslik = guncel.AnaBaslik;
                 manset.VurguluBaslik = guncel.VurguluBaslik;
                 manset.AciklamaMetni = guncel.AciklamaMetni;
+                manset.SurecBasligi = guncel.SurecBasligi;
+                manset.SurecAciklamasi = guncel.SurecAciklamasi;
+                manset.NedenBizBasligi = guncel.NedenBizBasligi;
                 manset.GuncellenmeTarihi = DateTime.UtcNow;
             }
 
