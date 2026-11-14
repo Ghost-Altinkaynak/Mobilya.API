@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Moilya.API.Entities;
 
 namespace Moilya.API.Context
 {
     public static class DbInitializer
     {
-        public static async Task SeedAsync(AppDbContext context)
+        public static async Task SeedAsync(AppDbContext context, IConfiguration config)
         {
             await context.Database.MigrateAsync();
 
@@ -110,11 +111,19 @@ namespace Moilya.API.Context
 
             if (!await context.Yoneticiler.AnyAsync())
             {
-                context.Yoneticiler.Add(new Yonetici
+                var ilkSifre = config["Admin:InitialPassword"];
+                if (!string.IsNullOrWhiteSpace(ilkSifre))
                 {
-                    KullaniciAdi = "admin",
-                    SifreHash = BCrypt.Net.BCrypt.HashPassword("cihan2026")
-                });
+                    context.Yoneticiler.Add(new Yonetici
+                    {
+                        KullaniciAdi = "admin",
+                        SifreHash = BCrypt.Net.BCrypt.HashPassword(ilkSifre)
+                    });
+                }
+                else
+                {
+                    Console.WriteLine("Admin:InitialPassword tanımlı değil, yönetici hesabı oluşturulmadı.");
+                }
             }
 
             await context.SaveChangesAsync();
