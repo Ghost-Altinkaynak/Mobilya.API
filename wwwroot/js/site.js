@@ -153,9 +153,14 @@ function renderGallerySection() {
         listEl.innerHTML = `<div class="gallery-empty">Bu hizmet için henüz görsel eklenmedi.<br><button type="button" class="link-btn" onclick="setGalleryFilter('all')">Tüm çalışmaları gör</button></div>`;
     } else {
         listEl.innerHTML = items.map(g => {
-            const bg = g.resimYolu
-                ? `background-image:url('${escapeHtml(g.resimYolu)}'); background-size:cover; background-position:center;`
-                : `background:linear-gradient(160deg, ${escapeHtml(g.renk1)}, ${escapeHtml(g.renk2)});`;
+            if (g.resimYolu) {
+                const altMetin = `${g.baslik} — Cihan Mobilya özel ölçü mobilya çalışması`;
+                return `<div class="gallery-item reveal">
+                    <img src="${escapeHtml(g.resimYolu)}" alt="${escapeHtml(altMetin)}" loading="lazy">
+                    <div class="caption">${escapeHtml(g.baslik)}</div>
+                </div>`;
+            }
+            const bg = `background:linear-gradient(160deg, ${escapeHtml(g.renk1)}, ${escapeHtml(g.renk2)});`;
             return `<div class="gallery-item reveal" style="${bg}"><div class="caption">${escapeHtml(g.baslik)}</div></div>`;
         }).join('');
     }
