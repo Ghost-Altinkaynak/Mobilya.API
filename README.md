@@ -13,6 +13,40 @@
 
 ---
 
+## 📸 Ekran Görüntüleri
+
+### Ana Sayfa
+
+![Ana sayfa](docs/images/ana-sayfa.png)
+
+### Hizmetler ve Süreç
+
+| Hizmetler | Süreç |
+|-----------|-------|
+| ![Hizmetler](docs/images/hizmetler.png) | ![Süreç](docs/images/surec.png) |
+
+### Galeri ve Keşif Talep Formu
+
+| Galeri | Talep formu |
+|--------|-------------|
+| ![Galeri](docs/images/galeri.png) | ![Talep formu](docs/images/talep-formu.png) |
+
+### Mobil Görünüm
+
+![Mobil görünüm](docs/images/mobil.png)
+
+### Admin Paneli
+
+| Giriş | Genel bakış |
+|-------|-------------|
+| ![Admin giriş](docs/images/admin-giris.png) | ![Admin genel bakış](docs/images/admin-genel-bakis.png) |
+
+| Galeri yönetimi | Gelen talepler |
+|-----------------|----------------|
+| ![Galeri yönetimi](docs/images/admin-galeri.png) | ![Gelen talepler](docs/images/admin-talepler.png) |
+
+---
+
 ## ✨ Özellikler
 
 ### 🌍 Ziyaretçi tarafı
@@ -84,6 +118,8 @@ Moilya.API/
 │   ├── index.html          # Site + admin paneli arayüzü
 │   ├── js/                 # site.js, admin.js, api.js, modal.js
 │   └── uploads/            # Yüklenen galeri fotoğrafları
+├── docs/
+│   └── images/             # README ekran görüntüleri
 ├── Program.cs          # Servisler, JWT, CORS, rate limiter, middleware
 ├── appsettings.json    # Gizli olmayan ayarlar
 └── Moilya.API.csproj
