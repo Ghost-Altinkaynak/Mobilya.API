@@ -230,5 +230,5 @@ Bu proje [MIT Lisansı](LICENSE) ile paylaşılmıştır.
 ---
 
 <p align="center">
- <b>Mustafa Altınkaynak</b> tarafından geliştirilmiştir.
+
 </p>
