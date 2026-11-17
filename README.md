@@ -34,18 +34,13 @@
   <img src="https://github.com/user-attachments/assets/5113cd3f-c711-423a-b906-3bc216930c16" width="48%" alt="İletişim" />
 </div>
 
-### Mobil Görünüm
-
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/9f4b2e93-2fb8-4a1f-81f9-cb4b0fb87d72" width="350" alt="Mobil Görünüm" />
-</div>
-
 
 ### Admin Paneli
 
-| Giriş | Genel bakış |
-|-------|-------------|
-| ![Admin giriş](docs/images/admin-giris.png) | ![Admin genel bakış](docs/images/admin-genel-bakis.png) |
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/676c7153-5413-49cf-a22b-6062f674db18" width="48%" alt="Giriş" />
+  <img src="https://github.com/user-attachments/assets/7ac8775a-1b67-4831-bd17-f1771fe75d91" width="48%" alt="Genel Bakış" />
+</div>
 
 | Galeri yönetimi | Gelen talepler |
 |-----------------|----------------|
