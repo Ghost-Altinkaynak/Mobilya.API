@@ -32,7 +32,8 @@
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/4c5fa95f-c4c9-40ac-b35e-42dc99034962" width="48%" alt="Galeri" />
-  <img src="https://github.com/user-attachments/assets/25aa330e-b5d1-4c9d-85ab-855c9d70db26" width="48%" alt="Talep Formu" />
+  <img width="1901" height="861" alt="İletişim" src="https://github.com/user-attachments/assets/5113cd3f-c711-423a-b906-3bc216930c16" />
+
 </div>
 
 ### Mobil Görünüm
