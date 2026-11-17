@@ -27,13 +27,11 @@
   <img src="https://github.com/user-attachments/assets/75f177d0-07f8-49c6-ae35-2a26629d2ec8" width="48%" alt="Süreç" />
 </div>
  
-
 ### Galeri ve Keşif Talep Formu
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/4c5fa95f-c4c9-40ac-b35e-42dc99034962" width="48%" alt="Galeri" />
-  <img width="1901" height="861" alt="İletişim" src="https://github.com/user-attachments/assets/5113cd3f-c711-423a-b906-3bc216930c16" />
-
+  <img src="https://github.com/user-attachments/assets/5113cd3f-c711-423a-b906-3bc216930c16" width="48%" alt="İletişim" />
 </div>
 
 ### Mobil Görünüm
