@@ -22,12 +22,11 @@
 
 ### Hizmetler ve Süreç
 
-| Hizmetler | 
+### Hizmetler ve Süreç
 
-| <img width="1895" height="865" alt="Hizmetler" src="https://github.com/user-attachments/assets/0d5cb02f-b7b7-4632-8709-b5e49efda92a" />
-| Süreç |
-
- |<img width="1896" height="867" alt="Süreç" src="https://github.com/user-attachments/assets/75f177d0-07f8-49c6-ae35-2a26629d2ec8" />
+| Hizmetler | Süreç |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/0d5cb02f-b7b7-4632-8709-b5e49efda92a" width="100%" /> | <img src="https://github.com/user-attachments/assets/75f177d0-07f8-49c6-ae35-2a26629d2ec8" width="100%" /> |
  
 
 ### Galeri ve Keşif Talep Formu
