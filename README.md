@@ -17,7 +17,8 @@
 
 ### Ana Sayfa
 
-![Ana sayfa](docs/images/ana-sayfa.png)
+![Ana sayfa](<img width="1901" height="871" alt="Anasayfa" src="https://github.com/user-attachments/assets/6c51e4a6-3f99-4e90-a44c-a126b1c6e905" />
+
 
 ### Hizmetler ve Süreç
 
