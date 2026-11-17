@@ -35,16 +35,12 @@
 </div>
 
 
-### Admin Paneli
+### Admin Paneli ve Galeri yönetimi 
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/676c7153-5413-49cf-a22b-6062f674db18" width="48%" alt="Giriş" />
   <img src="https://github.com/user-attachments/assets/7ac8775a-1b67-4831-bd17-f1771fe75d91" width="48%" alt="Genel Bakış" />
 </div>
-
-| Galeri yönetimi | Gelen talepler |
-|-----------------|----------------|
-| ![Galeri yönetimi](docs/images/admin-galeri.png) | ![Gelen talepler](docs/images/admin-talepler.png) |
 
 ---
 
