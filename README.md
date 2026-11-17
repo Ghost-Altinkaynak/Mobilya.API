@@ -36,7 +36,10 @@
 
 ### Mobil Görünüm
 
-![Mobil görünüm](docs/images/mobil.png)
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/9f4b2e93-2fb8-4a1f-81f9-cb4b0fb87d72" width="350" alt="Mobil Görünüm" />
+</div>
+
 
 ### Admin Paneli
 
