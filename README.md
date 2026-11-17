@@ -17,14 +17,16 @@
 
 ### Ana Sayfa
 
-![Ana sayfa] <img width="1901" height="871" alt="Anasayfa" src="https://github.com/user-attachments/assets/6c51e4a6-3f99-4e90-a44c-a126b1c6e905" />
+<img width="1901" height="871" alt="Anasayfa" src="https://github.com/user-attachments/assets/6c51e4a6-3f99-4e90-a44c-a126b1c6e905" />
 
 
 ### Hizmetler ve Süreç
 
 | Hizmetler | Süreç |
 |-----------|-------|
-| ![Hizmetler](docs/images/hizmetler.png) | ![Süreç](docs/images/surec.png) |
+| <img width="1895" height="865" alt="Hizmetler" src="https://github.com/user-attachments/assets/0d5cb02f-b7b7-4632-8709-b5e49efda92a" />
+ |<img width="1896" height="867" alt="Süreç" src="https://github.com/user-attachments/assets/75f177d0-07f8-49c6-ae35-2a26629d2ec8" />
+ |
 
 ### Galeri ve Keşif Talep Formu
 
